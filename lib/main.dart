@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,12 +35,28 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Stack(
             children: <Widget>[
-              Image.asset(
-                'assets/images/space.png',
+              FlareActor(
+                'assets/animations/Space.flr',
+                animation: 'Space',
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
               ),
-              Image.asset('assets/images/cassette.png'),
-              Image.asset(
-                'assets/images/bottle.png',
+              // Image.asset(
+              //   'assets/images/space.png',
+              // ),
+              Transform.rotate(
+                angle: pi / -15,
+                child: Transform.translate(
+                  offset: Offset(25, 20),
+                  child: Image.asset('assets/images/cassette.png'),
+                ),
+              ),
+              Transform.rotate(
+                angle: pi / -15,
+                child: Transform.translate(
+                  offset: Offset(25, 20),
+                  child: Image.asset('assets/images/bottle.png'),
+                ),
               ),
             ],
           ),
