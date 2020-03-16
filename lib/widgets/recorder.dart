@@ -86,6 +86,7 @@ class _RecorderState extends State<Recorder> {
                     color: Colors.white,
                   ),
                   onPressed: () async {
+                    // TODO change this to import single file
                     List<File> importedFiles = await FilePicker.getMultiFile();
                     if (importedFiles == null || importedFiles.length == 0) {
                       return;
