@@ -1,7 +1,14 @@
+import 'dart:io';
 import 'dart:math';
-
+import 'package:path/path.dart' as path;
 import 'package:flutter/material.dart';
+
+// third party libs
 import 'package:flare_flutter/flare_actor.dart';
+// project files
+import './constants.dart' as Constants;
+import 'models/audiofile.dart';
+import 'widgets/recorder.dart';
 
 void main() => runApp(MyApp());
 
@@ -61,6 +68,30 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        // elevation: 0,
+        child: Icon(Icons.add),
+        backgroundColor: Constants.recorderColor,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Recorder(
+                onFileSaveCb: (File file) {
+                  var audioFile = new AudioFile(
+                    uri: file.uri.toString(),
+                    path: file.path,
+                    title: path.basenameWithoutExtension(file.path),
+                  );
+                  print('=== File Saved ===');
+                  print(audioFile);
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }
